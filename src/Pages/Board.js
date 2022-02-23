@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import { Link } from 'react-router-dom';
 import Card from '../Components/Card';
 
 function Board(props) {
@@ -14,6 +14,9 @@ function Board(props) {
             role: "Software Engineer I"
         }
     ]);
+
+    // Tags
+    const [tags, setTags] = useState(["Frontend", "Backend"]);
 
     // Example structure
 
@@ -95,12 +98,24 @@ function Board(props) {
         }
     ]);
 
+    function addTag(tagsToAdd){
+        let newTags = tags;
+        newTags.concat(tagsToAdd);
+        setTags(newTags);
+        return;
+    }
+
     return (
         <div className = "container">
             <h1>Board</h1>
-            <form>
-                <input type="text" placeholder="Search..." />
-            </form>
+            <div className = "row">
+                <form>
+                    <input type="text" placeholder="Search..." />
+                </form>
+                
+                <Link to="/create"><button className='btn'>+ Create</button></Link>
+            </div>
+            
             <div className = "row">
                 {cards.map(section => {return (
                     <div className = "col-25">

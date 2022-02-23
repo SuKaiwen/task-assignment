@@ -11,6 +11,12 @@
     justify-content: space-between;
 }
 
+.normal-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
 .col-25 {
     width: 24%;
     margin-top: 30px;
@@ -24,9 +30,20 @@ p {
     color: #172B4D;
 }
 
+/* Components */
 input {
     padding: 10px;
     background-color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.btn {
+    padding: 10px;
+    background-color: #344563;
+    color: white;
+    margin: 0 10px;
     border: none;
     border-radius: 5px;
 }
