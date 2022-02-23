@@ -1,0 +1,45 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 15%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav .row > * {
+    margin-left: 15px;
+}
+
+.nav .title {
+    font-size: 25px;
+    color: #0052CC;
+    line-height: 0;
+}
+
+.nav p {
+    font-weight: bold;
+}
+
+@media (width < 1600px) {
+    .nav {
+        padding: 0 10%;
+    }
+}
+
+@media (width < 1268px) {
+    .nav {
+        padding: 0 4%;
+    }
+
+    .nav .title {
+        font-size: 20px;
+    }
+}

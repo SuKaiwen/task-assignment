@@ -1,0 +1,28 @@
+.card {
+    background-color: white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.card h1 {
+    font-size: 20px;
+}
+
+.card p {
+    color: gray;
+}
+
+.card .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card .tag {
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    margin: 0;
+}

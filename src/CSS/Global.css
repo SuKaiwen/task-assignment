@@ -1,0 +1,51 @@
+.container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px 15%;
+    text-align: left;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.col-25 {
+    width: 24%;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    background-color: #f1f1f1;
+    min-height: 600px;
+}
+
+p {
+    color: #172B4D;
+}
+
+input {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Font and Text */
+.col-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* Colors */
+.green {
+    color: green;
+}
+
+.orange {
+    color: orange;
+}
+
+.red {
+    color: red;
+}
