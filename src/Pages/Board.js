@@ -7,9 +7,6 @@ import _ from "lodash";
 
 function Board(props) {
 
-    console.log("Cards here: ");
-    console.log(props.cards);
-
     return (
         <div className = "container">
             <h1>Board</h1>
