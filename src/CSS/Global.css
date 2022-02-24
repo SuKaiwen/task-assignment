@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .col-25 {
@@ -28,6 +29,13 @@
 
 p {
     color: #172B4D;
+}
+
+.square {
+    width: 25px;
+    height: 25px;
+    background-color: black;
+    margin-right: 10px;
 }
 
 /* Components */
@@ -51,7 +59,7 @@ select {
     padding: 10px;
     background-color: #344563;
     color: white;
-    margin: 0 10px;
+    margin-right: 10px;
     border: none;
     border-radius: 5px;
 }

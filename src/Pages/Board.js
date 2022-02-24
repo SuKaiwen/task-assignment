@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../Components/Card';
 
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import _ from "lodash";
+
 function Board(props) {
 
     console.log("Cards here: ");
@@ -17,27 +20,56 @@ function Board(props) {
                 
                 <Link to="/create"><button className='btn'>+ Create</button></Link>
             </div>
-            
             <div className = "row">
-                {props.cards.map(section => {return (
-                    <div className = "col-25">
-                        <p className = "col-title">{section.title} ({section.items.length})</p>
-                        {section.items.map(card => {return( 
-                            <Card 
-                                title = {card.title}
-                                ticket_id = {card.ticket_id}
-                                description = {card.description}
-                                tag = {card.tag}
-                                tag_color = {card.tag_color}
-                                urgency = {card.urgency}
-                                assigned = {card.assigned}
-                            />
-                        )})}
-                    </div>
-                )})
+                <DragDropContext onDragEnd={props.handleDragEnd}>
+                    {_.map(props.cards, (data, key) => {
+                        return (
+                            <div key = {key} className="col-25">
+                                <h5>{data.title}</h5>
+                                <Droppable droppableId={key}>
+                                    {(provided)=>{
+                                        return(
+                                            <div ref={provided.innerRef}
+                                                {...provided.droppableProps}
+                                                className={"droppable-col"}
+                                            >
+                                                {data.items.map((x, index) => {
+                                                    return (
+                                                        <Draggable key={x.ticket_id} index={index} draggableId={x.ticket_id}>
+                                                            {(provided) => {
+                                                                return(
+                                                                    <div
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                        className="item"
+                                                                    >
+                                                                        
+                                                                        <Card 
+                                                                            title = {x.title}
+                                                                            ticket_id = {x.ticket_id}
+                                                                            description = {x.description}
+                                                                            tag = {x.tag}
+                                                                            tag_color = {x.tag_color}
+                                                                            urgency = {x.urgency}
+                                                                            assigned = {x.assigned}
+                                                                        />
+                                                                    </div>
 
-                }
-                
+                                                                )
+                                                            }}
+                                                        </Draggable>
+                                                    )
+                                                })}
+                                                {provided.placeholder}
+                                            </div>
+                                        )
+                                    }}
+                                </Droppable>
+                            </div>
+                        )
+                    })}
+                </DragDropContext>
             </div>
         </div>
     );

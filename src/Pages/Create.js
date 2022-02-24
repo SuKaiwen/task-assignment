@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 
 function Create(props) {
 
+    // Create options
+    const [createOption, setCreateOption] = useState("");
+
     // Default Tag Colors
     const [tagColors, setTagColors] = useState(["red", "blue", "green", "orange", "purple"]);
 
@@ -43,77 +46,104 @@ function Create(props) {
         <div className = "container">
             <h1>Create</h1>
             <br />
-            <h2>Add New User</h2>
             <div className = "normal-row">
-                <form>
-                    <input type="text" placeholder="First Name..." onChange={(e) => setFirstName(e.target.value)}/>
-                </form>
-                <form>
-                    <input type="text" placeholder="Last Name..." onChange={(e) => setLastName(e.target.value)}/>
-                </form>
-                <form>
-                    <input type="text" placeholder="Role..." onChange={(e) => setRole(e.target.value)}/>
-                </form>
-                <button className = "btn" onClick = {() => props.addUser(firstName, lastName, role)}>Add User</button>
+                <button className = "btn" onClick = {() => setCreateOption("User")}>+ User</button>
+                <button className = "btn" onClick = {() => setCreateOption("Tag")}>+ Tag</button>
+                <button className = "btn" onClick = {() => setCreateOption("Issue")}>+ Issue</button>
             </div>
-            <br />
-            <h2>Add New Tag</h2>
-            <div className = "normal-row">
-                <form>
-                    <input type="text" placeholder="Tag name..."  onChange={(e) => setTagName(e.target.value)}/>
-                </form>
-                <button className = "btn" onClick = {() => props.addTag(tagName)}>Add Tag</button>
-            </div>
-            <br />
-            <h2>Add New Task</h2>
-            <div className = "normal-row">
-                <form>
-                    <input type="text" placeholder="Ticket Id..." onChange={(e) => setTicketId(e.target.value)}/>
-                </form>
-                <form>
-                    <input type="text" placeholder="Title..." onChange={(e) => setTitle(e.target.value)}/>
-                </form>
-            </div>
-            <div className = "normal-row">
-                <form>
-                    <select onChange={handleTagChange} value = {cardTag} >
-                        {props.tags.map(tagOption => {return (
-                            <option value={tagOption}>{tagOption}</option>
-                        )})}
-                    </select>
-                </form>
-                <form>
-                    <select onChange={handleTagColorChange} value = {tagColor} >
-                        {tagColors.map(color => {return (
-                            <option value={color}>{color.toLocaleUpperCase()}</option>
-                        )})}
-                    </select>
-                </form>
-                <form>
-                    <select onChange={handleUrgencyChange} value = {urgency} >
-                        <option value="Low Urgency">Low Urgency</option>
-                        <option value="Mid Urgency">Mid Urgency</option>
-                        <option value="High Urgency">High Urgency</option>
-                    </select>
-                </form>
-            </div>
-            <div className = "normal-row">
-                <form>
-                    <textarea rows="4" cols="50" onChange={(e) => setDescription(e.target.value)}>
-                        Description...
-                    </textarea>
-                </form>
-            </div>
-            <div className = "normal-row">
-                <form>
-                    <select onChange={handleAssignedChange} value = {assigned} >
-                        {props.users.map(user => {return (
-                            <option value={user.name}>{user.name}</option>
-                        )})}
-                    </select>
-                </form>
-                <button className = "btn" onClick={() => props.addCard(ticketid, title, cardTag, tagColor, urgency, description, assigned)}>Add Card</button>
-            </div>
+            {createOption == "User" ? 
+                <div>
+                    <h2>Add New User</h2>
+                    <p>First Name</p>
+                    <form>
+                        <input type="text" placeholder="John..." onChange={(e) => setFirstName(e.target.value)}/>
+                    </form>
+                    <p>Last Name</p>
+                    <form>
+                        <input type="text" placeholder="Smith..." onChange={(e) => setLastName(e.target.value)}/>
+                    </form>
+                    <p>Role</p>
+                    <form>
+                        <input type="text" placeholder="Senior Engineer..." onChange={(e) => setRole(e.target.value)}/>
+                    </form>
+                    <br />
+                    <button className = "btn" onClick = {() => {props.addUser(firstName, lastName, role); setCreateOption("");}}>Add User</button>
+                </div>
+                : <>{
+                    createOption == "Tag" ? 
+                    <div>
+                    <h2>Add New Tag</h2>
+                    <p>Tag Name</p>
+                    <form>
+                        <input type="text" placeholder="Frontend..."  onChange={(e) => setTagName(e.target.value)}/>
+                    </form>
+                    <br />
+                    <button className = "btn" onClick = {() => {props.addTag(tagName); setCreateOption("");}}>Add Tag</button>
+                    </div>
+                    : <> {
+                        createOption == "Issue" ? 
+                        <div>
+                        <h2>Add New Issue</h2>
+                        <p>Ticket Id</p>
+                        <form>
+                            <input type="text" placeholder="E.g. AB1234..." onChange={(e) => setTicketId(e.target.value)}/>
+                        </form>
+                        <p>Title</p>
+                        <form>
+                            <input type="text" placeholder="E.g. Fix Bugs" onChange={(e) => setTitle(e.target.value)}/>
+                        </form>
+                        <p>Tag</p>
+                        <div className = "normal-row">
+                            <form>
+                                <select onChange={handleTagChange} value = {cardTag} >
+                                    {props.tags.map(tagOption => {return (
+                                        <option value={tagOption}>{tagOption}</option>
+                                    )})}
+                                </select>
+                            </form>
+                            <div className = "square" style ={{backgroundColor:`${tagColor}`}}></div>
+                            <form>
+                                <select onChange={handleTagColorChange} value = {tagColor} >
+                                    {tagColors.map(color => {return (
+                                        <option value={color}>{color.toLocaleUpperCase()}</option>
+                                    )})}
+                                </select>
+                            </form>
+                        </div>
+                        <p>Urgency</p>
+                        <form>
+                            <select onChange={handleUrgencyChange} value = {urgency} >
+                                <option value="Low Urgency">Low Urgency</option>
+                                <option value="Mid Urgency">Mid Urgency</option>
+                                <option value="High Urgency">High Urgency</option>
+                            </select>
+                        </form>
+                        <p>Description</p>
+                        <div className = "normal-row">
+                            <form>
+                                <textarea rows="4" cols="50" onChange={(e) => setDescription(e.target.value)}>
+                                    Description...
+                                </textarea>
+                            </form>
+                        </div>
+                        <p>Assigned to: </p>
+                        <div className = "normal-row">
+                            <form>
+                                <select onChange={handleAssignedChange} value = {assigned} >
+                                    {props.users.map(user => {return (
+                                        <option value={user.name}>{user.name}</option>
+                                    )})}
+                                </select>
+                            </form>
+                        </div>
+                        <button className = "btn" onClick={() => {props.addCard(ticketid, title, cardTag, tagColor, urgency, description, assigned); setCreateOption("");}}>Add Card</button>
+                    </div>
+                    : 
+                    <div></div>
+                    }
+                    </>
+                }</>
+            }
         </div>
     );
 }

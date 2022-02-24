@@ -5,7 +5,7 @@ function Card(props) {
         <div className = "card">
             <div className = "row">
                 <h1>{props.title}</h1>
-                <p>{props.ticket_id}</p>
+                <p>{props.ticket_id} | <i class="fa-solid fa-pen-to-square"></i></p>
             </div>
             <p>{props.description}</p>
             <div className = "row">
@@ -20,7 +20,7 @@ function Card(props) {
                         }
                     </> 
                 }</p>
-                <p>{props.assigned}</p>
+                <p><i class="fas fa-circle-user"></i> {props.assigned}</p>
             </div>
         </div>
     );

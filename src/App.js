@@ -51,8 +51,8 @@ function App() {
   // - Description e.g. Fix front-end responsiveness issues...
 
   // Example cards to test...
-  const [cards, setCards] = useState([
-      {
+  const [cards, setCards] = useState({
+      "todo":{
           title: "TO DO",
           items: [
               {
@@ -75,7 +75,7 @@ function App() {
               }
           ]
       },
-      {
+      "inprogress":{
           title: "IN PROGRESS",
           items: [
               {
@@ -89,13 +89,13 @@ function App() {
               }
           ],
       },
-      {
+      "codereview":{
           title: "CODE REVIEW",
           items: [
 
           ]
       },
-      {
+      "done":{
           title: "DONE",
           items : [
               {
@@ -109,7 +109,7 @@ function App() {
               }
           ]
       }
-  ]);
+  });
 
   function addTag(tagsToAdd){
 
@@ -148,7 +148,7 @@ function App() {
 
     let updatedCards = cards;
     
-    updatedCards[0].items.push({
+    updatedCards.todo.items.push({
       ticket_id: id,
       title: title,
       tag: tag,
@@ -163,6 +163,24 @@ function App() {
     console.log(cards);
   }
 
+  const handleDragEnd = ({destination, source}) => {
+    if(!destination){
+        return;
+    }
+    if(destination.index === source.index && destination.droppableId === source.droppableId){
+        return;
+    }
+
+    const copy = {...cards[source.droppableId].items[source.index]};
+    setCards(prev => {
+        prev={...prev};
+        prev[source.droppableId].items.splice(source.index, 1);
+        prev[destination.droppableId].items.splice(destination.index, 0, copy);
+        return prev;
+    });
+  }
+
+
   return (
     <div className="App">
       <Router>
@@ -170,6 +188,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Board 
             cards = {cards} 
+            handleDragEnd = {handleDragEnd}
           />} />
           <Route path="/create" element={<Create 
             cards = {cards} 
