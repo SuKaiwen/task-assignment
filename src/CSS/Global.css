@@ -27,6 +27,19 @@
     min-height: 600px;
 }
 
+.col-50 {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.col-50 p {
+    color: gray;
+}
+
+.col-50 h1 {
+    color: #172B4D;
+}
+
 p {
     color: #172B4D;
 }
@@ -45,6 +58,7 @@ input, option, textarea {
     border: none;
     border-radius: 5px;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 select {

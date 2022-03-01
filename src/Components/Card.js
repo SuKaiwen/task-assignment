@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Card(props) {
     return (
         <div className = "card">
             <div className = "row">
                 <h1>{props.title}</h1>
-                <p>{props.ticket_id} | <i class="fa-solid fa-pen-to-square"></i></p>
+                <Link to={`/task/${props.ticket_id}`}><p>{props.ticket_id} | <i class="fa-solid fa-pen-to-square"></i></p></Link>
             </div>
             <p>{props.description}</p>
             <div className = "row">

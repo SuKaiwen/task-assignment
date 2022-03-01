@@ -4,6 +4,7 @@ import Board from './Pages/Board';
 import Nav from './Components/Nav';
 import Create from './Pages/Create';
 import About from './Pages/About';
+import Task from './Pages/Task';
 
 import './CSS/Nav.css';
 import './CSS/Global.css';
@@ -85,7 +86,7 @@ function App() {
                   tag_color: "green",
                   urgency: "high",
                   assigned: "John Smith",
-                  description: "Duplicate Users are being create. Fix bug ASAP!"
+                  description: "Duplicate users are being created. Fix bug ASAP!"
               }
           ],
       },
@@ -140,14 +141,46 @@ function App() {
 
   function addCard(id, title, tag, tagColor, urgency, description, assigned){
 
-    console.log(description);
-
+    // Check if invalid details e.g. empty id
     if(id.replace(/\s/g, "") == "" || title.replace(/\s/g, "") == "" || description.replace(/\s/g, "") == ""){
       return;
     }
 
+    // Check if ID is at most 6 chars
+    if(id.length > 6){
+      return;
+    }
+
+    // Check if ticket id is unique
+    for(let x of cards.todo.items){
+      console.log(x.ticket_id, id);
+      if(x.ticket_id == id){
+        return;
+      }
+    }
+
+    for(let x of cards.inprogress.items){
+      if(x.ticket_id == id){
+        return;
+      }
+    }
+
+    for(let x of cards.codereview.items){
+      if(x.ticket_id == id){
+        return;
+      }
+    }
+
+    for(let x of cards.done.items){
+      if(x.ticket_id == id){
+        return;
+      }
+    }
+
+    // Passed the checks so update the cards
     let updatedCards = cards;
     
+    // Add the new card to the todo pile
     updatedCards.todo.items.push({
       ticket_id: id,
       title: title,
@@ -159,18 +192,21 @@ function App() {
     });
 
     setCards(updatedCards);
-
-    console.log(cards);
   }
 
   const handleDragEnd = ({destination, source}) => {
+
+    // If the card is not dragged on an invalid section
     if(!destination){
         return;
     }
+
+    // If the card is dragged to the same section as it started
     if(destination.index === source.index && destination.droppableId === source.droppableId){
         return;
     }
 
+    // Change the card's location to the new location (column)
     const copy = {...cards[source.droppableId].items[source.index]};
     setCards(prev => {
         prev={...prev};
@@ -199,6 +235,9 @@ function App() {
             addCard = {addCard}
           />} />
           <Route path="/about" element={<About/>} />
+          <Route path="/task/:slug" element={<Task
+            cards = {cards}
+          />} />
         </Routes>
     </Router>
     </div>
