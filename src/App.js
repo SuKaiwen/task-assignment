@@ -64,7 +64,11 @@ function App() {
                   urgency: "mid",
                   assigned: "Kevin Su",
                   description: "Implement the new UI design for the landing page. The UI design must follow the color scheme and layout!",
-                  date_created: "14-02-2022"
+                  date_created: "14-02-2022",
+                  comments: [
+                    "I would need to look at the Mobile version of the UI",
+                    "Ok here it is..."
+                  ]
               },
               {
                   ticket_id: "AB4342",
@@ -74,7 +78,8 @@ function App() {
                   urgency: "high",
                   assigned: "John Smith",
                   description: "The icons on the map are not showing up as expected, investigate why.",
-                  date_created: "28-02-2022"
+                  date_created: "28-02-2022",
+                  comments: []
               }
           ]
       },
@@ -89,7 +94,8 @@ function App() {
                   urgency: "high",
                   assigned: "John Smith",
                   description: "Duplicate users are being created. Fix bug ASAP!",
-                  date_created: "25-02-2022"
+                  date_created: "25-02-2022",
+                  comments: []
               }
           ],
       },
@@ -110,7 +116,8 @@ function App() {
                   urgency: "low",
                   assigned: "Kevin Su",
                   description: "Implement an image carousel for the product page.",
-                  date_created: "22-02-2022"
+                  date_created: "22-02-2022",
+                  comments: []
               }
           ]
       }
@@ -157,7 +164,6 @@ function App() {
 
     // Check if ticket id is unique
     for(let x of cards.todo.items){
-      console.log(x.ticket_id, id);
       if(x.ticket_id == id){
         return;
       }
@@ -200,13 +206,57 @@ function App() {
       urgency: urgency,
       assigned: assigned,
       description: description,
-      date_created: x.toISOString().split('T')[0].split("-").reverse().join("-")
+      date_created: x.toISOString().split('T')[0].split("-").reverse().join("-"),
+      comments: []
     });
 
     setCards(updatedCards);
   }
 
-  const handleDragEnd = ({destination, source}) => {
+  function addComment(myComment, id){
+    if(myComment === ""){
+      return;
+    }
+
+    console.log("hey!");
+
+    // Check if task found
+    let taskFound = false;
+
+    // find the task associated with the id
+    let updatedCards = cards;
+    for(let x = 0; x < updatedCards.todo.items.length; x++){
+      if(updatedCards.todo.items[x].ticket_id == id && !taskFound){
+        updatedCards.todo.items[x].comments.push(myComment);
+        taskFound = true;
+      }
+    }
+
+    for(let x = 0; x < updatedCards.inprogress.items.length; x++){
+      if(updatedCards.inprogress.items[x].ticket_id == id && !taskFound){
+        updatedCards.inprogress.items[x].comments.push(myComment);
+        taskFound = true;
+      }
+    }
+
+    for(let x = 0; x < updatedCards.codereview.items.length; x++){
+      if(updatedCards.codereview.items[x].ticket_id == id && !taskFound){
+        updatedCards.codereview.items[x].comments.push(myComment);
+        taskFound = true;
+      }
+    }
+
+    for(let x = 0; x < updatedCards.done.items.length; x++){
+      if(updatedCards.done.items[x].ticket_id == id && !taskFound){
+        updatedCards.done.items[x].comments.push(myComment);
+        taskFound = true;
+      }
+    }
+
+    setCards(updatedCards);
+  }
+
+  function handleDragEnd({destination, source}){
 
     // If the card is not dragged on an invalid section
     if(!destination){
@@ -249,6 +299,7 @@ function App() {
           <Route path="/about" element={<About/>} />
           <Route path="/task/:slug" element={<Task
             cards = {cards}
+            addComment = {addComment}
           />} />
         </Routes>
     </Router>

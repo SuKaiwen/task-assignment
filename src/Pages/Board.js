@@ -26,33 +26,31 @@ function Board(props) {
             firstUpdate.current = false;
             return;
         }
-        
-        // If empty just return original object
+
+        // If search term is empty just return original object
+        // AKA no searching
         if(searchKey === ""){
             setFilteredCards(props.cards);
             return;
         }
 
-        console.log("here");
-
         // Else filter the object
-        let tempCards = props.cards;
         let final = {
             "todo":{
                 title: "TO DO",
-                items: tempCards.todo.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+                items: props.cards.todo.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
             },
             "inprogress":{
                 title: "IN PROGRESS",
-                items: tempCards.inprogress.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+                items: props.cards.inprogress.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
             },
             "codereview":{
                 title: "CODE REVIEW",
-                items: tempCards.codereview.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+                items: props.cards.codereview.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
             },
             "done":{
                 title: "DONE",
-                items: tempCards.done.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+                items: props.cards.done.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
             }
         }
         setFilteredCards(final);
@@ -74,7 +72,7 @@ function Board(props) {
                     {_.map(filteredCards, (data, key) => {
                         return (
                             <div key = {key} className="col-25">
-                                <h5>{data.title}</h5>
+                                <h5>{data.title} ({data.items.length})</h5>
                                 <Droppable droppableId={key}>
                                     {(provided)=>{
                                         return(

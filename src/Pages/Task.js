@@ -10,8 +10,15 @@ function Task(props) {
     const [task, setTask] = useState();
     const [valid, setValid] = useState(true);
 
+    // Comments
+    const [myComment, setMyComment] = useState("");
+
     // Get the task details...
     useEffect(() => {
+        getTaskDetails();
+    }, [])
+
+    function getTaskDetails(){
         for(let x of props.cards.todo.items){
             if(x.ticket_id == slug){
                 let details = x;
@@ -41,7 +48,7 @@ function Task(props) {
             }
         }
         setValid(false);
-    }, [])
+    }
 
     return (
         <div className = "container">
@@ -76,7 +83,15 @@ function Task(props) {
                             <p>{task.description}</p>
                             <br />
                             <h2>Comments</h2>
-                            <p>{task.description}</p>
+                            {task.comments.map(comment => {return (
+                                <p>{comment}</p>
+                            )})}
+                            <form>
+                                <textarea rows="4" cols="50" onChange={e => setMyComment(e.target.value)}>
+                                    Description...
+                                </textarea>
+                            </form>
+                            <button className ="btn" onClick = {() => {props.addComment(myComment, slug); getTaskDetails();}}>Submit</button>
                         </div>
                     }
                 </div>
