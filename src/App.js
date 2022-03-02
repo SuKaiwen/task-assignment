@@ -63,7 +63,8 @@ function App() {
                   tag_color: "red",
                   urgency: "mid",
                   assigned: "Kevin Su",
-                  description: "Implement the new UI design for the landing page. The UI design must follow the color scheme and layout!"
+                  description: "Implement the new UI design for the landing page. The UI design must follow the color scheme and layout!",
+                  date_created: "14-02-2022"
               },
               {
                   ticket_id: "AB4342",
@@ -72,7 +73,8 @@ function App() {
                   tag_color: "blue",
                   urgency: "high",
                   assigned: "John Smith",
-                  description: "The icons on the map are not showing up as expected, investigate why."
+                  description: "The icons on the map are not showing up as expected, investigate why.",
+                  date_created: "28-02-2022"
               }
           ]
       },
@@ -86,7 +88,8 @@ function App() {
                   tag_color: "green",
                   urgency: "high",
                   assigned: "John Smith",
-                  description: "Duplicate users are being created. Fix bug ASAP!"
+                  description: "Duplicate users are being created. Fix bug ASAP!",
+                  date_created: "25-02-2022"
               }
           ],
       },
@@ -106,7 +109,8 @@ function App() {
                   tag_color: "green",
                   urgency: "low",
                   assigned: "Kevin Su",
-                  description: "Implement an image carousel for the product page."
+                  description: "Implement an image carousel for the product page.",
+                  date_created: "22-02-2022"
               }
           ]
       }
@@ -179,8 +183,15 @@ function App() {
 
     // Passed the checks so update the cards
     let updatedCards = cards;
+
+    // Get the date today
+    let x = new Date();
     
     // Add the new card to the todo pile
+
+    // Code for date: first we split it by T to get the date in the format YYYY-MM-DD
+    // Then we split the date by "-" then we reverse the array then join them together to get 
+    // DD-MM-YYYY format 
     updatedCards.todo.items.push({
       ticket_id: id,
       title: title,
@@ -188,7 +199,8 @@ function App() {
       tag_color: tagColor,
       urgency: urgency,
       assigned: assigned,
-      description: description
+      description: description,
+      date_created: x.toISOString().split('T')[0].split("-").reverse().join("-")
     });
 
     setCards(updatedCards);

@@ -56,15 +56,15 @@ function Create(props) {
                     <h2>Add New User</h2>
                     <p>First Name</p>
                     <form>
-                        <input type="text" placeholder="John..." onChange={(e) => setFirstName(e.target.value)}/>
+                        <input type="text" placeholder="E.g. John..." onChange={(e) => setFirstName(e.target.value)}/>
                     </form>
                     <p>Last Name</p>
                     <form>
-                        <input type="text" placeholder="Smith..." onChange={(e) => setLastName(e.target.value)}/>
+                        <input type="text" placeholder="E.g. Smith..." onChange={(e) => setLastName(e.target.value)}/>
                     </form>
                     <p>Role</p>
                     <form>
-                        <input type="text" placeholder="Senior Engineer..." onChange={(e) => setRole(e.target.value)}/>
+                        <input type="text" placeholder="E.g. Senior Engineer..." onChange={(e) => setRole(e.target.value)}/>
                     </form>
                     <br />
                     <button className = "btn" onClick = {() => {props.addUser(firstName, lastName, role); setCreateOption("");}}>Add User</button>
@@ -75,7 +75,7 @@ function Create(props) {
                     <h2>Add New Tag</h2>
                     <p>Tag Name</p>
                     <form>
-                        <input type="text" placeholder="Frontend..."  onChange={(e) => setTagName(e.target.value)}/>
+                        <input type="text" placeholder="E.g. Frontend..."  onChange={(e) => setTagName(e.target.value)}/>
                     </form>
                     <br />
                     <button className = "btn" onClick = {() => {props.addTag(tagName); setCreateOption("");}}>Add Tag</button>
@@ -90,7 +90,7 @@ function Create(props) {
                         </form>
                         <p>Title</p>
                         <form>
-                            <input type="text" placeholder="E.g. Fix Bugs" onChange={(e) => setTitle(e.target.value)}/>
+                            <input type="text" placeholder="E.g. Fix Bugs..." onChange={(e) => setTitle(e.target.value)}/>
                         </form>
                         <p>Tag</p>
                         <div className = "normal-row">

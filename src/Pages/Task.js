@@ -68,7 +68,7 @@ function Task(props) {
                                     <p>Assigned To:</p>
                                     <h1>{task.assigned}</h1>
                                     <p>Date Created:</p>
-                                    <h1>22/02/2022</h1>
+                                    <h1>{task.date_created}</h1>
                                 </div>
                             </div>
                             <br />

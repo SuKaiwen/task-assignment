@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../Components/Card';
 
@@ -7,19 +7,71 @@ import _ from "lodash";
 
 function Board(props) {
 
+    const [filteredCards, setFilteredCards] = useState();
+
+    const [searchKey, setSearchKey] = useState();
+
+    const firstUpdate = useRef(true);
+
+    // On initial load set the filtered cards to the original object
+    useEffect(() => {
+        setFilteredCards(props.cards);
+    }, [])
+
+    // On search filter the cards
+    useEffect(() => {
+
+        // On first update just skip it
+        if(firstUpdate.current){
+            firstUpdate.current = false;
+            return;
+        }
+        
+        // If empty just return original object
+        if(searchKey === ""){
+            setFilteredCards(props.cards);
+            return;
+        }
+
+        console.log("here");
+
+        // Else filter the object
+        let tempCards = props.cards;
+        let final = {
+            "todo":{
+                title: "TO DO",
+                items: tempCards.todo.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+            },
+            "inprogress":{
+                title: "IN PROGRESS",
+                items: tempCards.inprogress.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+            },
+            "codereview":{
+                title: "CODE REVIEW",
+                items: tempCards.codereview.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+            },
+            "done":{
+                title: "DONE",
+                items: tempCards.done.items.filter(x => x.title.toLowerCase().includes(searchKey.toLowerCase()))
+            }
+        }
+        setFilteredCards(final);
+    }, [searchKey])
+
     return (
         <div className = "container">
             <h1>Board</h1>
             <div className = "row">
+                {/* Change the search input and update the results here */}
                 <form>
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" placeholder="Search..." onChange={(e) => setSearchKey(e.target.value)} />
                 </form>
                 
                 <Link to="/create"><button className='btn'>+ Create</button></Link>
             </div>
             <div className = "row">
                 <DragDropContext onDragEnd={props.handleDragEnd}>
-                    {_.map(props.cards, (data, key) => {
+                    {_.map(filteredCards, (data, key) => {
                         return (
                             <div key = {key} className="col-25">
                                 <h5>{data.title}</h5>
