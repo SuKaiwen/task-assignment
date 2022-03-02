@@ -61,7 +61,7 @@ function Board(props) {
             <div className = "row">
                 <h1>Board</h1>
                 <div>
-                    <p><i class="fas fa-circle-user"></i> Kevin Su</p>
+                    <p><i class="fas fa-circle-user"></i> Guest</p>
                 </div>
             </div>
             <div className = "row">
