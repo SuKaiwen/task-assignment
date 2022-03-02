@@ -58,7 +58,12 @@ function Board(props) {
 
     return (
         <div className = "container">
-            <h1>Board</h1>
+            <div className = "row">
+                <h1>Board</h1>
+                <div>
+                    <p><i class="fas fa-circle-user"></i> Kevin Su</p>
+                </div>
+            </div>
             <div className = "row">
                 {/* Change the search input and update the results here */}
                 <form>

@@ -61,13 +61,19 @@ function App() {
                   title: "UI Redesign",
                   tag: "Frontend",
                   tag_color: "red",
-                  urgency: "mid",
+                  urgency: "Mid",
                   assigned: "Kevin Su",
                   description: "Implement the new UI design for the landing page. The UI design must follow the color scheme and layout!",
                   date_created: "14-02-2022",
                   comments: [
-                    "I would need to look at the Mobile version of the UI",
-                    "Ok here it is..."
+                    {
+                      name: "Kevin Su",
+                      value: "I would need to look at the Mobile version of the UI"
+                    },
+                    {
+                      name: "John Smith",
+                      value: "Ok here it is..."
+                    }
                   ]
               },
               {
@@ -75,7 +81,7 @@ function App() {
                   title: "Fix Map Bug",
                   tag: "Frontend",
                   tag_color: "blue",
-                  urgency: "high",
+                  urgency: "High",
                   assigned: "John Smith",
                   description: "The icons on the map are not showing up as expected, investigate why.",
                   date_created: "28-02-2022",
@@ -91,7 +97,7 @@ function App() {
                   title: "Multiple Users",
                   tag: "Backend",
                   tag_color: "green",
-                  urgency: "high",
+                  urgency: "High",
                   assigned: "John Smith",
                   description: "Duplicate users are being created. Fix bug ASAP!",
                   date_created: "25-02-2022",
@@ -113,7 +119,7 @@ function App() {
                   title: "Implement Carousel",
                   tag: "Frontend",
                   tag_color: "green",
-                  urgency: "low",
+                  urgency: "Low",
                   assigned: "Kevin Su",
                   description: "Implement an image carousel for the product page.",
                   date_created: "22-02-2022",
@@ -227,28 +233,40 @@ function App() {
     let updatedCards = cards;
     for(let x = 0; x < updatedCards.todo.items.length; x++){
       if(updatedCards.todo.items[x].ticket_id == id && !taskFound){
-        updatedCards.todo.items[x].comments.push(myComment);
+        updatedCards.todo.items[x].comments.push({
+          name: "Guest",
+          value:  myComment
+        });
         taskFound = true;
       }
     }
 
     for(let x = 0; x < updatedCards.inprogress.items.length; x++){
       if(updatedCards.inprogress.items[x].ticket_id == id && !taskFound){
-        updatedCards.inprogress.items[x].comments.push(myComment);
+        updatedCards.inprogress.items[x].comments.push({
+          name: "Guest",
+          value:  myComment
+        });
         taskFound = true;
       }
     }
 
     for(let x = 0; x < updatedCards.codereview.items.length; x++){
       if(updatedCards.codereview.items[x].ticket_id == id && !taskFound){
-        updatedCards.codereview.items[x].comments.push(myComment);
+        updatedCards.codereview.items[x].comments.push({
+          name: "Guest",
+          value:  myComment
+        });
         taskFound = true;
       }
     }
 
     for(let x = 0; x < updatedCards.done.items.length; x++){
       if(updatedCards.done.items[x].ticket_id == id && !taskFound){
-        updatedCards.done.items[x].comments.push(myComment);
+        updatedCards.done.items[x].comments.push({
+          name: "Guest",
+          value:  myComment
+        });
         taskFound = true;
       }
     }

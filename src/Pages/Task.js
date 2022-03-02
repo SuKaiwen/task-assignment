@@ -12,6 +12,7 @@ function Task(props) {
 
     // Comments
     const [myComment, setMyComment] = useState("");
+    const [commented, setCommented] = useState(false);
 
     // Get the task details...
     useEffect(() => {
@@ -84,14 +85,21 @@ function Task(props) {
                             <br />
                             <h2>Comments</h2>
                             {task.comments.map(comment => {return (
-                                <p>{comment}</p>
+                                <div>
+                                    <p>{comment.name} <i class="fas fa-circle-user"></i></p>
+                                    <p className = 'gray'>{comment.value}</p>
+                                    <hr />
+                                </div>
                             )})}
-                            <form>
-                                <textarea rows="4" cols="50" onChange={e => setMyComment(e.target.value)}>
-                                    Description...
-                                </textarea>
-                            </form>
-                            <button className ="btn" onClick = {() => {props.addComment(myComment, slug); getTaskDetails();}}>Submit</button>
+                            <div>
+                                <form>
+                                    <textarea rows="4" cols="50" onChange={e => setMyComment(e.target.value)}>
+                                        Description...
+                                    </textarea>
+                                </form>
+                                <button className ="btn" onClick = {() => {props.addComment(myComment, slug); setCommented(!commented)}}>Submit</button>
+                            </div>
+                            
                         </div>
                     }
                 </div>

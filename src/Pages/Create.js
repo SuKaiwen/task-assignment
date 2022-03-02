@@ -113,9 +113,9 @@ function Create(props) {
                         <p>Urgency</p>
                         <form>
                             <select onChange={handleUrgencyChange} value = {urgency} >
-                                <option value="Low Urgency">Low Urgency</option>
-                                <option value="Mid Urgency">Mid Urgency</option>
-                                <option value="High Urgency">High Urgency</option>
+                                <option value="Low">Low Urgency</option>
+                                <option value="Mid">Mid Urgency</option>
+                                <option value="High">High Urgency</option>
                             </select>
                         </form>
                         <p>Description</p>
@@ -136,7 +136,7 @@ function Create(props) {
                                 </select>
                             </form>
                         </div>
-                        <button className = "btn" onClick={() => {props.addCard(ticketid, title, cardTag, tagColor, urgency, description, assigned); setCreateOption("");}}>Add Card</button>
+                        <button className = "btn" onClick={() => {props.addCard(ticketid, title, cardTag, tagColor, urgency, description, assigned); setCreateOption("");}}>Add Issue</button>
                     </div>
                     : 
                     <div></div>
