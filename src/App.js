@@ -132,7 +132,7 @@ function App() {
   function addTag(tagsToAdd){
 
     // Check for valid tag name
-    if(tags.includes(tagsToAdd) || tagsToAdd == ""){
+    if(tags.includes(tagsToAdd) || tagsToAdd === ""){
       return;
     }
     let newTags = tags;
@@ -144,7 +144,7 @@ function App() {
   function addUser(fname, lname, role){
 
     // If empty string or string of spaces
-    if(fname.replace(/\s/g, "") == "" || lname.replace(/\s/g, "") == "" || role.replace(/\s/g, "") == ""){
+    if(fname.replace(/\s/g, "") === "" || lname.replace(/\s/g, "") === "" || role.replace(/\s/g, "") === ""){
       return;
     }
 
@@ -159,7 +159,7 @@ function App() {
   function addCard(id, title, tag, tagColor, urgency, description, assigned){
 
     // Check if invalid details e.g. empty id
-    if(id.replace(/\s/g, "") == "" || title.replace(/\s/g, "") == "" || description.replace(/\s/g, "") == ""){
+    if(id.replace(/\s/g, "") === "" || title.replace(/\s/g, "") === "" || description.replace(/\s/g, "") === ""){
       return;
     }
 
@@ -170,25 +170,25 @@ function App() {
 
     // Check if ticket id is unique
     for(let x of cards.todo.items){
-      if(x.ticket_id == id){
+      if(x.ticket_id === id){
         return;
       }
     }
 
     for(let x of cards.inprogress.items){
-      if(x.ticket_id == id){
+      if(x.ticket_id === id){
         return;
       }
     }
 
     for(let x of cards.codereview.items){
-      if(x.ticket_id == id){
+      if(x.ticket_id === id){
         return;
       }
     }
 
     for(let x of cards.done.items){
-      if(x.ticket_id == id){
+      if(x.ticket_id === id){
         return;
       }
     }
@@ -220,7 +220,7 @@ function App() {
   }
 
   function addComment(myComment, id){
-    if(myComment === ""){
+    if(myComment === "" || myComment.replace(/\s/g, "") === ""){
       return;
     }
 

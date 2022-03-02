@@ -94,7 +94,7 @@ function Task(props) {
                             <div>
                                 <form>
                                     <textarea rows="4" cols="50" onChange={e => setMyComment(e.target.value)}>
-                                        Description...
+                                        
                                     </textarea>
                                 </form>
                                 <button className ="btn" onClick = {() => {props.addComment(myComment, slug); setCommented(!commented)}}>Submit</button>

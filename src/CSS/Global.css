@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .normal-row {
@@ -78,6 +79,10 @@ select {
     border-radius: 5px;
 }
 
+textarea {
+    max-width: 275px;
+}
+
 /* Font and Text */
 .col-title {
     font-size: 17px;
@@ -99,4 +104,32 @@ select {
 
 .gray {
     color: gray;
+}
+
+@media (width < 1900px) {
+    .container{
+        padding: 25px 10%;
+    }
+}
+
+@media (width < 1400px) {
+    .container{
+        padding: 25px 5%;
+    }
+}
+
+@media (width < 1268px) {
+    .col-25 {
+        width: 49%;
+    }
+}
+
+@media (width < 768px) {
+    .col-25 {
+        width: 100%;
+    }
+
+    .col-50 {
+        width: 100%;
+    }
 }
