@@ -93,11 +93,16 @@ function Task(props) {
                             )})}
                             <div>
                                 <form>
-                                    <textarea rows="4" cols="50" onChange={e => setMyComment(e.target.value)}>
+                                    <textarea rows="4" id="text-comment" cols="50" onChange={e => setMyComment(e.target.value)}>
                                         
                                     </textarea>
                                 </form>
-                                <button className ="btn" onClick = {() => {props.addComment(myComment, slug); setCommented(!commented)}}>Submit</button>
+                                <button className ="btn" onClick = {() => {
+                                    props.addComment(myComment, slug); 
+                                    setMyComment(""); 
+                                    setCommented(!commented);
+                                    document.getElementById("text-comment").value = "";
+                                }}>Submit</button>
                             </div>
                             
                         </div>

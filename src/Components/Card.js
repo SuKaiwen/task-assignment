@@ -14,9 +14,9 @@ function Card(props) {
             </div>
             <div className = "row">
                 <p>Urgency: {props.urgency} {
-                    props.urgency === "low" ? <i class="fas fa-chevron-up green"></i> 
+                    props.urgency === "Low" ? <i class="fas fa-chevron-up green"></i> 
                     : <>
-                        {props.urgency === "mid" ? <i class="fas fa-chevron-up orange"></i> :
+                        {props.urgency === "Mid" ? <i class="fas fa-chevron-up orange"></i> :
                             <i class="fas fa-circle-chevron-up red"></i>
                         }
                     </> 
