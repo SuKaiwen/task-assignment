@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Issue Tracker / Task Assignment App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is created using React and BeautifulDnD (drag and drop library). It mimics the basic functions of a task delegation app such as Jira. 
 
-## Available Scripts
+## Available Functionalities
 
-In the project directory, you can run:
+### Drag and drop issues to a new section
+To drag and drop an issue simply click and hold onto the issue card and release it in the new column (section).
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/56058518/156486076-afd90c7b-e878-4251-87d5-70a76823dc6e.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Searching an issue
+To search for an existing issue, type the keyword in the search bar. On change the app will filter out the cards by comparing the title to the search term.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![image](https://user-images.githubusercontent.com/56058518/156486204-41a4aa48-204f-4546-8f75-ded3ba3532ca.png)
 
-### `npm test`
+### Adding new users
+To add a new user click + Create then + User. Type in user details and click Add User. Now the new user will show up when assigning an issue.
+![image](https://user-images.githubusercontent.com/56058518/156486348-0170c341-ca9a-4f61-a94d-3d9425764019.png)
+![image](https://user-images.githubusercontent.com/56058518/156486424-a2b3bdc7-3bad-4acc-b7c9-75c3c1e92788.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Adding new tags
+To add a new tag click + Create then + Tag. Type in the tag details and click Add Tag. Now the new tag will show up when creating an issue.
+![image](https://user-images.githubusercontent.com/56058518/156486508-1208c0df-dae5-46f7-92ab-1f8b52c38a5a.png)
 
-### `npm run build`
+### Adding new issues
+To add a new issue click + Create then + Issue. Type in the issue details and select the options from a drop down menu. Click Add Issue to finish. The issue will be added to the "Todo" section.
+![image](https://user-images.githubusercontent.com/56058518/156486648-66222a20-1af4-4295-96b0-900144ef3a38.png)
+![image](https://user-images.githubusercontent.com/56058518/156486682-e60223a9-9d73-4226-8ced-b3871ec32305.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Viewing an issue
+To view more details about an issue simply click on the issue number on the card in the top right.
+![image](https://user-images.githubusercontent.com/56058518/156486786-3275dee7-fa49-423d-914d-f17334b27ce5.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Adding a comment
+In the issue details page, at the bottom there is a text box where you can add a comment. Simply type into the text area then click Submit.
+![image](https://user-images.githubusercontent.com/56058518/156486895-4eda4b7e-6d7e-4cb8-9867-c02541fc247d.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
