@@ -64,9 +64,9 @@ function Task(props) {
                                     <h1>{task.tag}</h1>
                                     <p>Priority</p>
                                     <h1>{task.urgency} {
-                                        task.urgency === "low" ? <i class="fas fa-chevron-up green"></i> 
+                                        task.urgency === "Low" ? <i class="fas fa-chevron-up green"></i> 
                                         : <>
-                                            {task.urgency === "mid" ? <i class="fas fa-chevron-up orange"></i> :
+                                            {task.urgency === "Mid" ? <i class="fas fa-chevron-up orange"></i> :
                                                 <i class="fas fa-circle-chevron-up red"></i>
                                             }
                                         </> 
